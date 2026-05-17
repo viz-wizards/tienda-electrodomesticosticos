@@ -38,9 +38,13 @@ class Usuario extends CrudModel
             return null;
         }
 
-        $stmt = $this->db->prepare("SELECT * FROM usuarios WHERE email = :email LIMIT 1");
-        $stmt->execute(['email' => trim(strtolower($email))]);
-        $user = $stmt->fetch();
+        try {
+            $stmt = $this->db->prepare("SELECT * FROM usuarios WHERE email = :email LIMIT 1");
+            $stmt->execute(['email' => trim(strtolower($email))]);
+            $user = $stmt->fetch();
+        } catch (Throwable $exception) {
+            return null;
+        }
 
         return $user ?: null;
     }
@@ -105,12 +109,16 @@ class Usuario extends CrudModel
             return false;
         }
 
-        $stmt = $this->db->prepare("UPDATE usuarios SET password = :password WHERE email = :email AND estado = 'Activo'");
-        $stmt->execute([
-            'password' => password_hash($password, PASSWORD_DEFAULT),
-            'email' => trim(strtolower($email)),
-        ]);
+        try {
+            $stmt = $this->db->prepare("UPDATE usuarios SET password = :password WHERE email = :email AND estado = 'Activo'");
+            $stmt->execute([
+                'password' => password_hash($password, PASSWORD_DEFAULT),
+                'email' => trim(strtolower($email)),
+            ]);
 
-        return $stmt->rowCount() > 0;
+            return $stmt->rowCount() > 0;
+        } catch (Throwable $exception) {
+            return false;
+        }
     }
 }

@@ -45,6 +45,7 @@
     </aside>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     <?php include __DIR__ . '/partials/footer.php'; ?>
 =======
     <footer class="site-footer">
@@ -55,6 +56,9 @@
         </div>
     </footer>
 >>>>>>> 38ddd9f37320cc1c5bbd520b648079b846e81dbf
+=======
+    <?php include __DIR__ . '/partials/footer.php'; ?>
+>>>>>>> 4beb1fe (Octavo commit)
 
     <script src="<?= asset('js/carrito.js') ?>"></script>
     <script src="<?= asset('js/main.js') ?>"></script>

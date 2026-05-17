@@ -26,7 +26,11 @@ abstract class CrudModel
             $sql .= " ORDER BY {$orderBy}";
         }
 
-        return $this->db->query($sql)->fetchAll();
+        try {
+            return $this->db->query($sql)->fetchAll();
+        } catch (Throwable $exception) {
+            return [];
+        }
     }
 
     public function obtener(int $id): ?array
@@ -35,9 +39,13 @@ abstract class CrudModel
             return null;
         }
 
-        $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE {$this->primaryKey} = :id LIMIT 1");
-        $stmt->execute(['id' => $id]);
-        $row = $stmt->fetch();
+        try {
+            $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE {$this->primaryKey} = :id LIMIT 1");
+            $stmt->execute(['id' => $id]);
+            $row = $stmt->fetch();
+        } catch (Throwable $exception) {
+            return null;
+        }
 
         return $row ?: null;
     }
@@ -55,20 +63,24 @@ abstract class CrudModel
             return false;
         }
 
-        if ($id > 0) {
-            $sets = array_map(fn($field) => "{$field} = :{$field}", array_keys($values));
-            $values['id'] = $id;
-            $stmt = $this->db->prepare("UPDATE {$this->table} SET " . implode(', ', $sets) . " WHERE {$this->primaryKey} = :id");
+        try {
+            if ($id > 0) {
+                $sets = array_map(fn($field) => "{$field} = :{$field}", array_keys($values));
+                $values['id'] = $id;
+                $stmt = $this->db->prepare("UPDATE {$this->table} SET " . implode(', ', $sets) . " WHERE {$this->primaryKey} = :id");
+                return $stmt->execute($values);
+            }
+
+            $fields = array_keys($values);
+            $placeholders = array_map(fn($field) => ":{$field}", $fields);
+            $stmt = $this->db->prepare(
+                "INSERT INTO {$this->table} (" . implode(', ', $fields) . ") VALUES (" . implode(', ', $placeholders) . ")"
+            );
+
             return $stmt->execute($values);
+        } catch (Throwable $exception) {
+            return false;
         }
-
-        $fields = array_keys($values);
-        $placeholders = array_map(fn($field) => ":{$field}", $fields);
-        $stmt = $this->db->prepare(
-            "INSERT INTO {$this->table} (" . implode(', ', $fields) . ") VALUES (" . implode(', ', $placeholders) . ")"
-        );
-
-        return $stmt->execute($values);
     }
 
     public function eliminar(int $id): bool
@@ -78,12 +90,20 @@ abstract class CrudModel
         }
 
         if ($this->statusColumn) {
-            $stmt = $this->db->prepare("UPDATE {$this->table} SET {$this->statusColumn} = :estado WHERE {$this->primaryKey} = :id");
-            return $stmt->execute(['estado' => $this->inactiveValue(), 'id' => $id]);
+            try {
+                $stmt = $this->db->prepare("UPDATE {$this->table} SET {$this->statusColumn} = :estado WHERE {$this->primaryKey} = :id");
+                return $stmt->execute(['estado' => $this->inactiveValue(), 'id' => $id]);
+            } catch (Throwable $exception) {
+                return false;
+            }
         }
 
-        $stmt = $this->db->prepare("DELETE FROM {$this->table} WHERE {$this->primaryKey} = :id");
-        return $stmt->execute(['id' => $id]);
+        try {
+            $stmt = $this->db->prepare("DELETE FROM {$this->table} WHERE {$this->primaryKey} = :id");
+            return $stmt->execute(['id' => $id]);
+        } catch (Throwable $exception) {
+            return false;
+        }
     }
 
     protected function cleanData(array $data): array

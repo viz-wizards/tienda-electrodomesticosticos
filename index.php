@@ -3,6 +3,7 @@ require_once __DIR__ . '/config/constants.php';
 require_once __DIR__ . '/views/helpers/helpers.php';
 require_once __DIR__ . '/model/Producto.php';
 
+<<<<<<< HEAD
 $productoModel = new Producto();
 $page = $_GET['page'] ?? 'home';
 <<<<<<< HEAD
@@ -28,6 +29,27 @@ if ($page === 'producto') {
 if ($page === 'categoria') {
     $categoryId = (int) ($_GET['id'] ?? 0);
     $products = $productoModel->porCategoria($categoryId);
+=======
+$allowedPages = ['home', 'categoria', 'producto', 'nosotros', 'contacto', 'login', 'registro', 'recuperar', 'terminos'];
+$page = $_GET['page'] ?? 'home';
+
+if (!in_array($page, $allowedPages, true)) {
+    $page = 'home';
+}
+
+$productoModel = new Producto();
+$categories = $productoModel->categorias();
+$products = [];
+$currentProduct = null;
+$query = trim($_GET['q'] ?? '');
+
+if ($page === 'categoria') {
+    $products = $productoModel->porCategoria((int) ($_GET['id'] ?? 0));
+} elseif ($page === 'producto') {
+    $currentProduct = $productoModel->encontrar((int) ($_GET['id'] ?? 0));
+} elseif ($page === 'home') {
+    $products = $query !== '' ? $productoModel->buscar($query) : $productoModel->destacados();
+>>>>>>> 4beb1fe (Octavo commit)
 }
 
 include __DIR__ . '/views/public/layout.php';

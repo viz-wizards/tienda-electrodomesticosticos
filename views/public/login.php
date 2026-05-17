@@ -8,6 +8,9 @@
             <p class="form-alert success">Sesion cerrada correctamente.</p>
         <?php endif; ?>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4beb1fe (Octavo commit)
         <?php if (isset($_GET['registered'])): ?>
             <p class="form-alert success">Cuenta creada correctamente. Ahora puedes iniciar sesion.</p>
         <?php endif; ?>
@@ -22,11 +25,14 @@
             <a href="<?= url('?page=recuperar') ?>">Olvide mi contrasena</a>
         </div>
         <p class="auth-note">Demo: admin@electrohogar.com / password123</p>
+<<<<<<< HEAD
 =======
         <label>Correo<input type="email" name="email" value="admin@electrohogar.com" required></label>
         <label>Contrasena<input type="password" name="password" value="password123" required></label>
         <button type="submit">Entrar</button>
         <p>Demo: admin@electrohogar.com / password123</p>
 >>>>>>> 38ddd9f37320cc1c5bbd520b648079b846e81dbf
+=======
+>>>>>>> 4beb1fe (Octavo commit)
     </form>
 </section>

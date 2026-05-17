@@ -5,6 +5,9 @@ require_once __DIR__ . '/views/helpers/auth_guard.php';
 require_once __DIR__ . '/config/Database.php';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4beb1fe (Octavo commit)
 $section = $_GET['section'] ?? 'dashboard';
 $allowedSections = ['dashboard', 'productos', 'categorias', 'clientes', 'proveedores', 'ventas', 'pagos', 'usuarios'];
 
@@ -13,6 +16,7 @@ if (!in_array($section, $allowedSections, true)) {
 }
 
 $db = (new Database())->connect();
+<<<<<<< HEAD
 =======
 $db = (new Database())->connect();
 $adminPage = $_GET['page'] ?? 'dashboard';
@@ -23,6 +27,9 @@ if (!in_array($adminPage, $allowedAdminPages, true)) {
 }
 
 >>>>>>> 38ddd9f37320cc1c5bbd520b648079b846e81dbf
+=======
+$dbAvailable = $db !== null;
+>>>>>>> 4beb1fe (Octavo commit)
 $stats = [
     'productos' => 8,
     'clientes' => 3,
@@ -30,6 +37,7 @@ $stats = [
     'ingresos' => 8492,
 ];
 $recentSales = [];
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 $products = [];
@@ -52,6 +60,25 @@ if ($db) {
         ORDER BY v.creado_en DESC
         LIMIT 6")->fetchAll();
 <<<<<<< HEAD
+=======
+
+if ($db) {
+    try {
+        $stats['productos'] = (int) $db->query("SELECT COUNT(*) FROM productos")->fetchColumn();
+        $stats['clientes'] = (int) $db->query("SELECT COUNT(*) FROM clientes")->fetchColumn();
+        $stats['ventas'] = (int) $db->query("SELECT COUNT(*) FROM ventas")->fetchColumn();
+        $stats['ingresos'] = (float) $db->query("SELECT COALESCE(SUM(total), 0) FROM ventas WHERE estado <> 'Anulado'")->fetchColumn();
+
+        $recentSales = $db->query("SELECT v.id_venta, v.fecha_venta, v.total, v.estado, c.nombres, c.apellidos, p.nombre AS producto
+            FROM ventas v
+            INNER JOIN clientes c ON c.id_cliente = v.id_cliente
+            INNER JOIN productos p ON p.id_producto = v.id_producto
+            ORDER BY v.creado_en DESC
+            LIMIT 6")->fetchAll();
+    } catch (Throwable $exception) {
+        $dbAvailable = false;
+    }
+>>>>>>> 4beb1fe (Octavo commit)
 }
 
 if ($section !== 'dashboard') {
@@ -87,6 +114,7 @@ if ($section !== 'dashboard') {
     }
 
     if (in_array($section, ['ventas', 'pagos'], true) && $db) {
+<<<<<<< HEAD
         $clientes = $db->query("SELECT * FROM clientes WHERE estado = 'Activo' ORDER BY nombres")->fetchAll();
         $productos = $db->query("SELECT * FROM productos WHERE estado <> 'Inactivo' ORDER BY nombre")->fetchAll();
         $ventas = $db->query("SELECT v.*, c.nombres, c.apellidos FROM ventas v INNER JOIN clientes c ON c.id_cliente = v.id_cliente ORDER BY v.creado_en DESC")->fetchAll();
@@ -131,13 +159,30 @@ if ($section !== 'dashboard') {
         ['id_venta' => 1, 'nombres' => 'Juan Carlos', 'apellidos' => 'Perez Lopez', 'producto' => 'Smart TV 55 4K UHD', 'cantidad' => 1, 'fecha_venta' => date('Y-m-d'), 'total' => 1899, 'estado' => 'Pagado'],
     ];
 >>>>>>> 38ddd9f37320cc1c5bbd520b648079b846e81dbf
+=======
+        try {
+            $clientes = $db->query("SELECT * FROM clientes WHERE estado = 'Activo' ORDER BY nombres")->fetchAll();
+            $productos = $db->query("SELECT * FROM productos WHERE estado <> 'Inactivo' ORDER BY nombre")->fetchAll();
+            $ventas = $db->query("SELECT v.*, c.nombres, c.apellidos FROM ventas v INNER JOIN clientes c ON c.id_cliente = v.id_cliente ORDER BY v.creado_en DESC")->fetchAll();
+        } catch (Throwable $exception) {
+            $clientes = [];
+            $productos = [];
+            $ventas = [];
+            $dbAvailable = false;
+        }
+    }
+>>>>>>> 4beb1fe (Octavo commit)
 }
 
 include __DIR__ . '/views/admin/header.php';
 include __DIR__ . '/views/admin/sidebar.php';
 <<<<<<< HEAD
+<<<<<<< HEAD
 include __DIR__ . '/views/admin/' . $section . '.php';
 =======
 include __DIR__ . '/views/admin/' . $adminPage . '.php';
 >>>>>>> 38ddd9f37320cc1c5bbd520b648079b846e81dbf
+=======
+include __DIR__ . '/views/admin/' . $section . '.php';
+>>>>>>> 4beb1fe (Octavo commit)
 include __DIR__ . '/views/admin/footer.php';

@@ -24,7 +24,11 @@ class Producto
                 ORDER BY p.estado = 'Disponible' DESC, p.creado_en DESC
                 LIMIT 12";
 
-        return $this->db->query($sql)->fetchAll() ?: $this->demoProductos();
+        try {
+            return $this->db->query($sql)->fetchAll() ?: $this->demoProductos();
+        } catch (Throwable $exception) {
+            return $this->demoProductos();
+        }
     }
 
     public function porCategoria(int $idCategoria): array
@@ -33,14 +37,18 @@ class Producto
             return array_values(array_filter($this->demoProductos(), fn($item) => (int) $item['id_categoria'] === $idCategoria));
         }
 
-        $stmt = $this->db->prepare("SELECT p.*, c.nombre AS categoria
-            FROM productos p
-            LEFT JOIN categorias c ON c.id_categoria = p.id_categoria
-            WHERE p.id_categoria = :categoria AND p.estado IN ('Disponible', 'Agotado')
-            ORDER BY p.nombre");
-        $stmt->execute(['categoria' => $idCategoria]);
+        try {
+            $stmt = $this->db->prepare("SELECT p.*, c.nombre AS categoria
+                FROM productos p
+                LEFT JOIN categorias c ON c.id_categoria = p.id_categoria
+                WHERE p.id_categoria = :categoria AND p.estado IN ('Disponible', 'Agotado')
+                ORDER BY p.nombre");
+            $stmt->execute(['categoria' => $idCategoria]);
 
-        return $stmt->fetchAll();
+            return $stmt->fetchAll();
+        } catch (Throwable $exception) {
+            return [];
+        }
     }
 
     public function buscar(string $termino): array
@@ -56,14 +64,18 @@ class Producto
             }));
         }
 
-        $stmt = $this->db->prepare("SELECT p.*, c.nombre AS categoria
-            FROM productos p
-            LEFT JOIN categorias c ON c.id_categoria = p.id_categoria
-            WHERE (p.nombre LIKE :q OR p.descripcion LIKE :q) AND p.estado IN ('Disponible', 'Agotado')
-            ORDER BY p.nombre");
-        $stmt->execute(['q' => "%{$termino}%"]);
+        try {
+            $stmt = $this->db->prepare("SELECT p.*, c.nombre AS categoria
+                FROM productos p
+                LEFT JOIN categorias c ON c.id_categoria = p.id_categoria
+                WHERE (p.nombre LIKE :q OR p.descripcion LIKE :q) AND p.estado IN ('Disponible', 'Agotado')
+                ORDER BY p.nombre");
+            $stmt->execute(['q' => "%{$termino}%"]);
 
-        return $stmt->fetchAll();
+            return $stmt->fetchAll();
+        } catch (Throwable $exception) {
+            return [];
+        }
     }
 
     public function encontrar(int $id): ?array
@@ -77,13 +89,17 @@ class Producto
             return null;
         }
 
-        $stmt = $this->db->prepare("SELECT p.*, c.nombre AS categoria
-            FROM productos p
-            LEFT JOIN categorias c ON c.id_categoria = p.id_categoria
-            WHERE p.id_producto = :id
-            LIMIT 1");
-        $stmt->execute(['id' => $id]);
-        $producto = $stmt->fetch();
+        try {
+            $stmt = $this->db->prepare("SELECT p.*, c.nombre AS categoria
+                FROM productos p
+                LEFT JOIN categorias c ON c.id_categoria = p.id_categoria
+                WHERE p.id_producto = :id
+                LIMIT 1");
+            $stmt->execute(['id' => $id]);
+            $producto = $stmt->fetch();
+        } catch (Throwable $exception) {
+            return null;
+        }
 
         return $producto ?: null;
     }
@@ -100,7 +116,11 @@ class Producto
             ];
         }
 
-        return $this->db->query("SELECT * FROM categorias WHERE estado = 'Activo' ORDER BY nombre")->fetchAll();
+        try {
+            return $this->db->query("SELECT * FROM categorias WHERE estado = 'Activo' ORDER BY nombre")->fetchAll();
+        } catch (Throwable $exception) {
+            return [];
+        }
     }
 
 <<<<<<< HEAD
@@ -110,11 +130,15 @@ class Producto
             return $this->demoProductos();
         }
 
-        return $this->db->query("SELECT p.*, c.nombre AS categoria, pr.razon_social AS proveedor
-            FROM productos p
-            LEFT JOIN categorias c ON c.id_categoria = p.id_categoria
-            LEFT JOIN proveedores pr ON pr.id_proveedor = p.id_proveedor
-            ORDER BY {$orderBy}")->fetchAll();
+        try {
+            return $this->db->query("SELECT p.*, c.nombre AS categoria, pr.razon_social AS proveedor
+                FROM productos p
+                LEFT JOIN categorias c ON c.id_categoria = p.id_categoria
+                LEFT JOIN proveedores pr ON pr.id_proveedor = p.id_proveedor
+                ORDER BY {$orderBy}")->fetchAll();
+        } catch (Throwable $exception) {
+            return [];
+        }
     }
 
     public function guardar(array $data): bool
@@ -138,19 +162,23 @@ class Producto
         $values['descripcion'] = $values['descripcion'] === '' ? null : $values['descripcion'];
         $values['imagen'] = $values['imagen'] === '' ? null : $values['imagen'];
 
-        if ($id > 0) {
-            $values['id'] = $id;
-            $stmt = $this->db->prepare("UPDATE productos SET id_categoria = :id_categoria, id_proveedor = :id_proveedor,
-                nombre = :nombre, descripcion = :descripcion, precio = :precio, stock = :stock, imagen = :imagen,
-                estado = :estado WHERE id_producto = :id");
+        try {
+            if ($id > 0) {
+                $values['id'] = $id;
+                $stmt = $this->db->prepare("UPDATE productos SET id_categoria = :id_categoria, id_proveedor = :id_proveedor,
+                    nombre = :nombre, descripcion = :descripcion, precio = :precio, stock = :stock, imagen = :imagen,
+                    estado = :estado WHERE id_producto = :id");
+                return $stmt->execute($values);
+            }
+
+            $stmt = $this->db->prepare("INSERT INTO productos
+                (id_categoria, id_proveedor, nombre, descripcion, precio, stock, imagen, estado)
+                VALUES (:id_categoria, :id_proveedor, :nombre, :descripcion, :precio, :stock, :imagen, :estado)");
+
             return $stmt->execute($values);
+        } catch (Throwable $exception) {
+            return false;
         }
-
-        $stmt = $this->db->prepare("INSERT INTO productos
-            (id_categoria, id_proveedor, nombre, descripcion, precio, stock, imagen, estado)
-            VALUES (:id_categoria, :id_proveedor, :nombre, :descripcion, :precio, :stock, :imagen, :estado)");
-
-        return $stmt->execute($values);
     }
 
     public function eliminar(int $id): bool
@@ -159,8 +187,12 @@ class Producto
             return false;
         }
 
-        $stmt = $this->db->prepare("UPDATE productos SET estado = 'Inactivo' WHERE id_producto = :id");
-        return $stmt->execute(['id' => $id]);
+        try {
+            $stmt = $this->db->prepare("UPDATE productos SET estado = 'Inactivo' WHERE id_producto = :id");
+            return $stmt->execute(['id' => $id]);
+        } catch (Throwable $exception) {
+            return false;
+        }
     }
 
     public function proveedores(): array
@@ -169,7 +201,11 @@ class Producto
             return [];
         }
 
-        return $this->db->query("SELECT * FROM proveedores WHERE estado = 'Activo' ORDER BY razon_social")->fetchAll();
+        try {
+            return $this->db->query("SELECT * FROM proveedores WHERE estado = 'Activo' ORDER BY razon_social")->fetchAll();
+        } catch (Throwable $exception) {
+            return [];
+        }
     }
 
     private function nullableInt($value): ?int

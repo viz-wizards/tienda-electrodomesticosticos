@@ -1,5 +1,8 @@
 <section class="auth-page">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4beb1fe (Octavo commit)
     <form class="auth-card" method="post" action="<?= url('process/register.php') ?>" data-auth-form>
         <h1>Crear cuenta</h1>
         <?php if (isset($_GET['error'])): ?>
@@ -18,6 +21,7 @@
         <div class="auth-links">
             <a href="<?= url('?page=login') ?>">Ya tengo cuenta</a>
         </div>
+<<<<<<< HEAD
 =======
     <form class="auth-card">
         <h1>Crear cuenta</h1>
@@ -26,5 +30,7 @@
         <label>Contrasena<input type="password"></label>
         <button type="button">Registrarme</button>
 >>>>>>> 38ddd9f37320cc1c5bbd520b648079b846e81dbf
+=======
+>>>>>>> 4beb1fe (Octavo commit)
     </form>
 </section>

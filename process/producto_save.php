@@ -1,6 +1,7 @@
 <?php
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 $_POST['entity'] = 'productos';
 require __DIR__ . '/admin_save.php';
 =======
@@ -36,3 +37,7 @@ $stmt->execute([
 header('Location: ../admin.php?page=productos&ok=created');
 exit;
 >>>>>>> 38ddd9f37320cc1c5bbd520b648079b846e81dbf
+=======
+$_POST['entity'] = 'productos';
+require __DIR__ . '/admin_save.php';
+>>>>>>> 4beb1fe (Octavo commit)

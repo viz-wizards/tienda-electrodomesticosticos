@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4beb1fe (Octavo commit)
 <?php
 $crudTitle = 'Productos';
 $primaryKey = 'id_producto';
@@ -29,6 +32,7 @@ $columns = [
     ['key' => 'estado', 'label' => 'Estado', 'format' => 'status'],
 ];
 include __DIR__ . '/_crud.php';
+<<<<<<< HEAD
 =======
 <main class="admin-main">
     <header class="admin-topbar">
@@ -129,3 +133,5 @@ include __DIR__ . '/_crud.php';
     </section>
 </main>
 >>>>>>> 38ddd9f37320cc1c5bbd520b648079b846e81dbf
+=======
+>>>>>>> 4beb1fe (Octavo commit)

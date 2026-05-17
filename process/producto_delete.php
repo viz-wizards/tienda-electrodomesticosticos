@@ -1,6 +1,7 @@
 <?php
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 $_GET['entity'] = 'productos';
 require __DIR__ . '/admin_delete.php';
 =======
@@ -18,3 +19,7 @@ if ($db && $id > 0) {
 header('Location: ../admin.php?page=productos&ok=deleted');
 exit;
 >>>>>>> 38ddd9f37320cc1c5bbd520b648079b846e81dbf
+=======
+$_GET['entity'] = 'productos';
+require __DIR__ . '/admin_delete.php';
+>>>>>>> 4beb1fe (Octavo commit)
