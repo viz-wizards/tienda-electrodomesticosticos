@@ -22,8 +22,11 @@ body {
 
 a { color: inherit; text-decoration: none; }
 button, input, textarea { font: inherit; }
+<<<<<<< HEAD
 button { transition: background .18s ease, color .18s ease, transform .18s ease; }
 button:hover { transform: translateY(-1px); }
+=======
+>>>>>>> 38ddd9f37320cc1c5bbd520b648079b846e81dbf
 
 .site-header {
     position: sticky;
@@ -310,12 +313,16 @@ button:hover { transform: translateY(-1px); }
 }
 
 .contact-form label,
+<<<<<<< HEAD
 .auth-card label {
     position: relative;
     display: grid;
     gap: 8px;
     font-weight: 800;
 }
+=======
+.auth-card label { display: grid; gap: 8px; font-weight: 800; }
+>>>>>>> 38ddd9f37320cc1c5bbd520b648079b846e81dbf
 
 .contact-form input,
 .contact-form textarea,
@@ -341,6 +348,7 @@ button:hover { transform: translateY(-1px); }
     gap: 16px;
     width: min(430px, 100%);
     padding: 26px;
+<<<<<<< HEAD
     box-shadow: var(--shadow);
 }
 
@@ -409,6 +417,8 @@ button:hover { transform: translateY(-1px); }
 .password-hint.success {
     color: #084d45;
     background: #d8ebe7;
+=======
+>>>>>>> 38ddd9f37320cc1c5bbd520b648079b846e81dbf
 }
 
 .form-alert {

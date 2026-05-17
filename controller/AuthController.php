@@ -2,7 +2,10 @@
 
 require_once __DIR__ . '/../config/Database.php';
 require_once __DIR__ . '/../config/constants.php';
+<<<<<<< HEAD
 require_once __DIR__ . '/UsuarioController.php';
+=======
+>>>>>>> 38ddd9f37320cc1c5bbd520b648079b846e81dbf
 
 class AuthController
 {
@@ -56,6 +59,7 @@ class AuthController
         session_destroy();
     }
 
+<<<<<<< HEAD
     public function register(array $data): bool
     {
         return (new UsuarioController())->registrarCliente($data);
@@ -66,6 +70,8 @@ class AuthController
         return (new UsuarioController())->recuperarPassword($email, $password, $confirmacion);
     }
 
+=======
+>>>>>>> 38ddd9f37320cc1c5bbd520b648079b846e81dbf
     private function passwordMatches(string $plain, string $hash): bool
     {
         return password_verify($plain, $hash) || $plain === 'password123' && password_verify('password', $hash);

@@ -83,9 +83,15 @@
             <h2>Inventario</h2>
             <p>Desde aqui puedes revisar el resumen de productos y preparar las siguientes vistas CRUD.</p>
             <div class="quick-actions">
+<<<<<<< HEAD
                 <a href="admin.php#productos">Nuevo producto</a>
                 <a href="admin.php#clientes">Nuevo cliente</a>
                 <a href="admin.php#ventas">Registrar venta</a>
+=======
+                <a href="admin.php?page=productos&action=nuevo">Nuevo producto</a>
+                <a href="admin.php?page=clientes&action=nuevo">Nuevo cliente</a>
+                <a href="admin.php?page=ventas&action=nuevo">Registrar venta</a>
+>>>>>>> 38ddd9f37320cc1c5bbd520b648079b846e81dbf
             </div>
         </aside>
     </section>

@@ -44,7 +44,17 @@
         </div>
     </aside>
 
+<<<<<<< HEAD
     <?php include __DIR__ . '/partials/footer.php'; ?>
+=======
+    <footer class="site-footer">
+        <p>&copy; <?= date('Y') ?> <?= e(APP_NAME) ?>. Electrodomesticos para un hogar mas simple.</p>
+        <div>
+            <a href="<?= url('?page=terminos') ?>">Terminos</a>
+            <a href="<?= url('?page=login') ?>">Admin</a>
+        </div>
+    </footer>
+>>>>>>> 38ddd9f37320cc1c5bbd520b648079b846e81dbf
 
     <script src="<?= asset('js/carrito.js') ?>"></script>
     <script src="<?= asset('js/main.js') ?>"></script>

@@ -5,6 +5,7 @@ document.querySelectorAll('input[type="search"]').forEach(input => {
         }
     });
 });
+<<<<<<< HEAD
 
 document.querySelectorAll('[data-auth-form]').forEach(form => {
     const password = form.querySelector('[data-password]');
@@ -69,3 +70,5 @@ document.querySelectorAll('[data-password]').forEach(input => {
     });
     wrap.appendChild(button);
 });
+=======
+>>>>>>> 38ddd9f37320cc1c5bbd520b648079b846e81dbf

@@ -5,7 +5,11 @@ require_once __DIR__ . '/model/Producto.php';
 
 $productoModel = new Producto();
 $page = $_GET['page'] ?? 'home';
+<<<<<<< HEAD
 $allowedPages = ['home', 'producto', 'categoria', 'contacto', 'nosotros', 'terminos', 'login', 'registro', 'recuperar'];
+=======
+$allowedPages = ['home', 'producto', 'categoria', 'contacto', 'nosotros', 'terminos', 'login', 'registro'];
+>>>>>>> 38ddd9f37320cc1c5bbd520b648079b846e81dbf
 
 if (!in_array($page, $allowedPages, true)) {
     http_response_code(404);

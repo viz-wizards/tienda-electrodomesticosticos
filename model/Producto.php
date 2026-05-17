@@ -103,6 +103,7 @@ class Producto
         return $this->db->query("SELECT * FROM categorias WHERE estado = 'Activo' ORDER BY nombre")->fetchAll();
     }
 
+<<<<<<< HEAD
     public function listar(string $orderBy = 'p.creado_en DESC'): array
     {
         if (!$this->db) {
@@ -177,6 +178,8 @@ class Producto
         return $value > 0 ? $value : null;
     }
 
+=======
+>>>>>>> 38ddd9f37320cc1c5bbd520b648079b846e81dbf
     private function demoProductos(): array
     {
         return [
