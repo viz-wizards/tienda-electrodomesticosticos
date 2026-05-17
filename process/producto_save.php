@@ -2,6 +2,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 $_POST['entity'] = 'productos';
 require __DIR__ . '/admin_save.php';
 =======
@@ -41,3 +42,7 @@ exit;
 $_POST['entity'] = 'productos';
 require __DIR__ . '/admin_save.php';
 >>>>>>> 4beb1fe (Octavo commit)
+=======
+$_POST['entity'] = 'productos';
+require __DIR__ . '/admin_save.php';
+>>>>>>> d42ad1c (Noveno commit)

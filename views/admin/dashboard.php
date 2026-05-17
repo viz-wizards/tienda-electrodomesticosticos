@@ -8,12 +8,18 @@
     </header>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> d42ad1c (Noveno commit)
     <?php if (isset($dbAvailable) && !$dbAvailable): ?>
         <p class="admin-alert error">No se pudo leer la base de datos. Importa el archivo SQL actualizado o revisa la conexion.</p>
     <?php endif; ?>
 
+<<<<<<< HEAD
 >>>>>>> 4beb1fe (Octavo commit)
+=======
+>>>>>>> d42ad1c (Noveno commit)
     <section class="stats-grid">
         <article>
             <span>Productos</span>
@@ -89,6 +95,7 @@
             <p class="eyebrow">Gestion rapida</p>
             <h2>Inventario</h2>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <p>Desde aqui puedes revisar el resumen de productos y preparar las siguientes vistas CRUD.</p>
             <div class="quick-actions">
 <<<<<<< HEAD
@@ -101,12 +108,17 @@
                 <a href="admin.php?page=ventas&action=nuevo">Registrar venta</a>
 >>>>>>> 38ddd9f37320cc1c5bbd520b648079b846e81dbf
 =======
+=======
+>>>>>>> d42ad1c (Noveno commit)
             <p>Desde aqui puedes revisar el inventario, clientes y ventas del sistema.</p>
             <div class="quick-actions">
                 <a href="admin.php?section=productos">Nuevo producto</a>
                 <a href="admin.php?section=clientes">Nuevo cliente</a>
                 <a href="admin.php?section=ventas">Registrar venta</a>
+<<<<<<< HEAD
 >>>>>>> 4beb1fe (Octavo commit)
+=======
+>>>>>>> d42ad1c (Noveno commit)
             </div>
         </aside>
     </section>

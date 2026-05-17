@@ -46,6 +46,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <?php include __DIR__ . '/partials/footer.php'; ?>
 =======
     <footer class="site-footer">
@@ -59,6 +60,9 @@
 =======
     <?php include __DIR__ . '/partials/footer.php'; ?>
 >>>>>>> 4beb1fe (Octavo commit)
+=======
+    <?php include __DIR__ . '/partials/footer.php'; ?>
+>>>>>>> d42ad1c (Noveno commit)
 
     <script src="<?= asset('js/carrito.js') ?>"></script>
     <script src="<?= asset('js/main.js') ?>"></script>

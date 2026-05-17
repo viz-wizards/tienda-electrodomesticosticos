@@ -193,7 +193,8 @@ CREATE TABLE movimientos_stock (
 
 INSERT INTO roles (nombre, descripcion) VALUES
 ('Administrador','Control total del sistema'),
-('Vendedor','Gestiona ventas y clientes');
+('Vendedor','Gestiona ventas y clientes'),
+('Cliente','Cuenta de comprador');
 
 INSERT INTO usuarios (id_rol, nombre, email, password, rol, estado) VALUES
 (1, 'Admin Principal', 'admin@electrohogar.com', 'password123', 'Administrador', 'Activo'),

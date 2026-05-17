@@ -4,12 +4,16 @@ require_once __DIR__ . '/../config/Database.php';
 require_once __DIR__ . '/../config/constants.php';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 require_once __DIR__ . '/UsuarioController.php';
 =======
 >>>>>>> 38ddd9f37320cc1c5bbd520b648079b846e81dbf
 =======
 require_once __DIR__ . '/UsuarioController.php';
 >>>>>>> 4beb1fe (Octavo commit)
+=======
+require_once __DIR__ . '/UsuarioController.php';
+>>>>>>> d42ad1c (Noveno commit)
 
 class AuthController
 {
@@ -24,6 +28,7 @@ class AuthController
     {
         $email = trim(strtolower($email));
 
+<<<<<<< HEAD
         if ($this->db) {
 <<<<<<< HEAD
             $stmt = $this->db->prepare("SELECT * FROM usuarios WHERE email = :email AND estado = 'Activo' LIMIT 1");
@@ -57,6 +62,17 @@ class AuthController
                 // Continue with the configured admin fallback below.
 >>>>>>> 4beb1fe (Octavo commit)
             }
+=======
+        $user = (new Usuario())->buscarPorEmail($email);
+        if ($user && ($user['estado'] ?? '') === 'Activo' && $this->passwordMatches($password, $user['password'])) {
+            $this->startUserSession([
+                'id' => (int) $user['id_usuario'],
+                'name' => $user['nombre'],
+                'email' => $user['email'],
+                'role' => $user['rol'] ?? 'Cliente',
+            ]);
+            return true;
+>>>>>>> d42ad1c (Noveno commit)
         }
 
         if ($email === ADMIN_EMAIL && $password === ADMIN_PASSWORD) {
@@ -84,8 +100,11 @@ class AuthController
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 4beb1fe (Octavo commit)
+=======
+>>>>>>> d42ad1c (Noveno commit)
     public function register(array $data): bool
     {
         return (new UsuarioController())->registrarCliente($data);
@@ -97,18 +116,24 @@ class AuthController
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 38ddd9f37320cc1c5bbd520b648079b846e81dbf
     private function passwordMatches(string $plain, string $hash): bool
     {
         return password_verify($plain, $hash) || $plain === 'password123' && password_verify('password', $hash);
 =======
+=======
+>>>>>>> d42ad1c (Noveno commit)
     private function passwordMatches(string $plain, string $hash): bool
     {
         return password_verify($plain, $hash)
             || hash_equals($hash, $plain)
             || ($plain === 'password123' && password_verify('password', $hash));
+<<<<<<< HEAD
 >>>>>>> 4beb1fe (Octavo commit)
+=======
+>>>>>>> d42ad1c (Noveno commit)
     }
 
     private function startUserSession(array $user): void

@@ -7,8 +7,11 @@
     <nav class="admin-nav">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 4beb1fe (Octavo commit)
+=======
+>>>>>>> d42ad1c (Noveno commit)
         <a class="<?= ($section ?? 'dashboard') === 'dashboard' ? 'active' : '' ?>" href="admin.php">Dashboard</a>
         <a class="<?= ($section ?? '') === 'productos' ? 'active' : '' ?>" href="admin.php?section=productos">Productos</a>
         <a class="<?= ($section ?? '') === 'categorias' ? 'active' : '' ?>" href="admin.php?section=categorias">Categorias</a>
@@ -18,6 +21,7 @@
         <a class="<?= ($section ?? '') === 'pagos' ? 'active' : '' ?>" href="admin.php?section=pagos">Pagos</a>
         <a class="<?= ($section ?? '') === 'usuarios' ? 'active' : '' ?>" href="admin.php?section=usuarios">Usuarios</a>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         <a class="<?= $adminPage === 'dashboard' ? 'active' : '' ?>" href="admin.php">Dashboard</a>
         <a class="<?= $adminPage === 'productos' ? 'active' : '' ?>" href="admin.php?page=productos">Productos</a>
@@ -26,6 +30,8 @@
 >>>>>>> 38ddd9f37320cc1c5bbd520b648079b846e81dbf
 =======
 >>>>>>> 4beb1fe (Octavo commit)
+=======
+>>>>>>> d42ad1c (Noveno commit)
         <a href="index.php">Ver tienda</a>
     </nav>
 

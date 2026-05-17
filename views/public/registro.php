@@ -1,8 +1,11 @@
 <section class="auth-page">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 4beb1fe (Octavo commit)
+=======
+>>>>>>> d42ad1c (Noveno commit)
     <form class="auth-card" method="post" action="<?= url('process/register.php') ?>" data-auth-form>
         <h1>Crear cuenta</h1>
         <?php if (isset($_GET['error'])): ?>
@@ -22,6 +25,7 @@
             <a href="<?= url('?page=login') ?>">Ya tengo cuenta</a>
         </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <form class="auth-card">
         <h1>Crear cuenta</h1>
@@ -32,5 +36,7 @@
 >>>>>>> 38ddd9f37320cc1c5bbd520b648079b846e81dbf
 =======
 >>>>>>> 4beb1fe (Octavo commit)
+=======
+>>>>>>> d42ad1c (Noveno commit)
     </form>
 </section>

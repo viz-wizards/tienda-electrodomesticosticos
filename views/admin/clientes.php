@@ -1,7 +1,10 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 4beb1fe (Octavo commit)
+=======
+>>>>>>> d42ad1c (Noveno commit)
 <?php
 $crudTitle = 'Clientes';
 $primaryKey = 'id_cliente';
@@ -22,6 +25,7 @@ $columns = [
     ['key' => 'estado', 'label' => 'Estado', 'format' => 'status'],
 ];
 include __DIR__ . '/_crud.php';
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 <main class="admin-main">
@@ -99,3 +103,5 @@ include __DIR__ . '/_crud.php';
 >>>>>>> 38ddd9f37320cc1c5bbd520b648079b846e81dbf
 =======
 >>>>>>> 4beb1fe (Octavo commit)
+=======
+>>>>>>> d42ad1c (Noveno commit)

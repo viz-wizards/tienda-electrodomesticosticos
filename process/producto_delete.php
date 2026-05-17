@@ -2,6 +2,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 $_GET['entity'] = 'productos';
 require __DIR__ . '/admin_delete.php';
 =======
@@ -23,3 +24,7 @@ exit;
 $_GET['entity'] = 'productos';
 require __DIR__ . '/admin_delete.php';
 >>>>>>> 4beb1fe (Octavo commit)
+=======
+$_GET['entity'] = 'productos';
+require __DIR__ . '/admin_delete.php';
+>>>>>>> d42ad1c (Noveno commit)

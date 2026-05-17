@@ -4,6 +4,7 @@ require_once __DIR__ . '/views/helpers/helpers.php';
 require_once __DIR__ . '/model/Producto.php';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 $productoModel = new Producto();
 $page = $_GET['page'] ?? 'home';
 <<<<<<< HEAD
@@ -30,6 +31,8 @@ if ($page === 'categoria') {
     $categoryId = (int) ($_GET['id'] ?? 0);
     $products = $productoModel->porCategoria($categoryId);
 =======
+=======
+>>>>>>> d42ad1c (Noveno commit)
 $allowedPages = ['home', 'categoria', 'producto', 'nosotros', 'contacto', 'login', 'registro', 'recuperar', 'terminos'];
 $page = $_GET['page'] ?? 'home';
 
@@ -49,7 +52,10 @@ if ($page === 'categoria') {
     $currentProduct = $productoModel->encontrar((int) ($_GET['id'] ?? 0));
 } elseif ($page === 'home') {
     $products = $query !== '' ? $productoModel->buscar($query) : $productoModel->destacados();
+<<<<<<< HEAD
 >>>>>>> 4beb1fe (Octavo commit)
+=======
+>>>>>>> d42ad1c (Noveno commit)
 }
 
 include __DIR__ . '/views/public/layout.php';

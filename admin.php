@@ -6,8 +6,11 @@ require_once __DIR__ . '/config/Database.php';
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 4beb1fe (Octavo commit)
+=======
+>>>>>>> d42ad1c (Noveno commit)
 $section = $_GET['section'] ?? 'dashboard';
 $allowedSections = ['dashboard', 'productos', 'categorias', 'clientes', 'proveedores', 'ventas', 'pagos', 'usuarios'];
 
@@ -16,6 +19,7 @@ if (!in_array($section, $allowedSections, true)) {
 }
 
 $db = (new Database())->connect();
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 $db = (new Database())->connect();
@@ -30,6 +34,9 @@ if (!in_array($adminPage, $allowedAdminPages, true)) {
 =======
 $dbAvailable = $db !== null;
 >>>>>>> 4beb1fe (Octavo commit)
+=======
+$dbAvailable = $db !== null;
+>>>>>>> d42ad1c (Noveno commit)
 $stats = [
     'productos' => 8,
     'clientes' => 3,
@@ -37,6 +44,7 @@ $stats = [
     'ingresos' => 8492,
 ];
 $recentSales = [];
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -61,6 +69,8 @@ if ($db) {
         LIMIT 6")->fetchAll();
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> d42ad1c (Noveno commit)
 
 if ($db) {
     try {
@@ -78,7 +88,10 @@ if ($db) {
     } catch (Throwable $exception) {
         $dbAvailable = false;
     }
+<<<<<<< HEAD
 >>>>>>> 4beb1fe (Octavo commit)
+=======
+>>>>>>> d42ad1c (Noveno commit)
 }
 
 if ($section !== 'dashboard') {
@@ -114,6 +127,7 @@ if ($section !== 'dashboard') {
     }
 
     if (in_array($section, ['ventas', 'pagos'], true) && $db) {
+<<<<<<< HEAD
 <<<<<<< HEAD
         $clientes = $db->query("SELECT * FROM clientes WHERE estado = 'Activo' ORDER BY nombres")->fetchAll();
         $productos = $db->query("SELECT * FROM productos WHERE estado <> 'Inactivo' ORDER BY nombre")->fetchAll();
@@ -160,6 +174,8 @@ if ($section !== 'dashboard') {
     ];
 >>>>>>> 38ddd9f37320cc1c5bbd520b648079b846e81dbf
 =======
+=======
+>>>>>>> d42ad1c (Noveno commit)
         try {
             $clientes = $db->query("SELECT * FROM clientes WHERE estado = 'Activo' ORDER BY nombres")->fetchAll();
             $productos = $db->query("SELECT * FROM productos WHERE estado <> 'Inactivo' ORDER BY nombre")->fetchAll();
@@ -171,11 +187,15 @@ if ($section !== 'dashboard') {
             $dbAvailable = false;
         }
     }
+<<<<<<< HEAD
 >>>>>>> 4beb1fe (Octavo commit)
+=======
+>>>>>>> d42ad1c (Noveno commit)
 }
 
 include __DIR__ . '/views/admin/header.php';
 include __DIR__ . '/views/admin/sidebar.php';
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 include __DIR__ . '/views/admin/' . $section . '.php';
@@ -185,4 +205,7 @@ include __DIR__ . '/views/admin/' . $adminPage . '.php';
 =======
 include __DIR__ . '/views/admin/' . $section . '.php';
 >>>>>>> 4beb1fe (Octavo commit)
+=======
+include __DIR__ . '/views/admin/' . $section . '.php';
+>>>>>>> d42ad1c (Noveno commit)
 include __DIR__ . '/views/admin/footer.php';
